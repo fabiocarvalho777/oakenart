@@ -1,7 +1,10 @@
 
-var http = require('http');
+var express = require('express');
+var path = require('path');
+var app = express();
+var publicStaticFolder = path.join(__dirname, 'public');
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Welcome to OakenArt\n');
-}).listen(process.env.PORT);
+app.use(express.static(publicStaticFolder));
+app.use(express.logger('dev'));
+
+app.listen(process.env.PORT);
